@@ -15,6 +15,7 @@ class Matrix{
     int rows;
     int columns;
     T** m;
+    
 public:
     Matrix(){
         rows = 0;
@@ -109,13 +110,13 @@ public:
                 }
             }
          for (int i = 0; i < rows; i++){
-            for (int j = 0; j < F.columns; j++){
-                if (abs(proiz[i][j])<10*std::numeric_limits<double>::epsilon())
-                    proiz[i][j] = 0;
-                if (abs(abs(proiz[i][j])-round(proiz[i][j]))<10*std::numeric_limits<double>::epsilon())
-                    proiz[i][j] = round(proiz[i][j]);
-            }
-        }
+          for (int j = 0; j < F.columns; j++){
+           if (abs(proiz[i][j])<10*std::numeric_limits<double>::epsilon())
+            proiz[i][j] = 0;
+           if (abs(abs(proiz[i][j])-round(proiz[i][j]))<10*std::numeric_limits<double>::epsilon())
+            proiz[i][j] = round(proiz[i][j]);
+          }
+         }
         return proiz;
     }
     bool operator != (const Matrix& N) const{
@@ -128,13 +129,13 @@ public:
         }
         return true;
     }
-    
     bool operator == (const Matrix& O) const{
            for (int i = 0; i < rows; i++){
                for (int j = 0; j < columns; j++){
-                   if (m[i][j] == O[i][j]) {};
-                   else
+                   if (m[i][j] == O[i][j]) {}
+                   else {
                        return false;
+                   }
                }
            }
            return true;
@@ -147,7 +148,6 @@ public:
             delete[] m;
         }
     }
-    
     Matrix Inverse() const{
         if (rows != columns){
             Matrix<T> error;
@@ -212,23 +212,22 @@ public:
         }
     return F;
     }
-    
     template<class R>
-    friend bool operator==(const Matrix<R>& P,const Matrix<R>& Q);
+    friend bool operator==(const Matrix<R>& P, const Matrix<R>& Q);
 };
 
 template<class T>
 bool operator==(const Matrix<double> &P, const Matrix<double> &Q){
-    if (std::is_floating_point<T>::value){
-        for (int i=0;i<P.Rows();i++){
-            for (int j=0;j<P.Cols();j++){
-                if (abs(P[i][j]-Q[i][j])>std::numeric_limits<double>::epsilon()){
-                    return false;
-                }
-            }
+  if (std::is_floating_point<T>::value){
+    for (int i = 0; i < P.Rows(); i++){
+      for (int j = 0; j < P.Cols(); j++){
+        if (abs(P[i][j]-Q[i][j])>std::numeric_limits<double>::epsilon()){
+          return false;
         }
-        return true;
+      }
     }
+    return true;
+  }
 }
 
 #endif // INCLUDE_MATRIX_HPP_
