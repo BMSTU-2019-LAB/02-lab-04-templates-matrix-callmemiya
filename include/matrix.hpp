@@ -6,7 +6,6 @@
 #include <iostream>
 #include <limits>
 #include <math.h>
-#include <algorithm>
 
 template<class T>
 class Matrix{
@@ -110,11 +109,13 @@ public:
       }
       for (int i = 0; i < rows; i++){
        for (int j = 0; j < F.columns; j++){
-        if (abs(proiz[i][j])<10*std::numeric_limits<double>::epsilon())
+        if (abs(proiz[i][j])<10*std::numeric_limits<double>::epsilon()){
          proiz[i][j] = 0;
-           int w=round(proiz[i][j]);
-        if (abs(abs(proiz[i][j])-w)<10*std::numeric_limits<double>::epsilon())
+        }
+        int w = round(proiz[i][j]);
+        if (abs(abs(proiz[i][j])-w)<10*std::numeric_limits<double>::epsilon()){
          proiz[i][j] = round(proiz[i][j]);
+        }
        }
       }
      return proiz;
@@ -174,7 +175,9 @@ public:
                             r++;
                         }
                         for (int q = 0; q < 2*columns; q++){
-                            std::swap(Turn[i][q], Turn[r][q]);
+                            double k = Turn[i][q];
+                            Turn[i][q] = Turn[r][q];
+                            Turn[r][q] = k;
                         }
                     }
                         l = Turn[i][j];
@@ -230,3 +233,4 @@ bool operator==(const Matrix<double> &P, const Matrix<double> &Q){
 }
 
 #endif // INCLUDE_MATRIX_HPP_
+
