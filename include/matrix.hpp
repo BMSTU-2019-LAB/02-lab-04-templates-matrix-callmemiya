@@ -37,9 +37,9 @@ public:
     Matrix(const Matrix& M){
         this -> columns = M.Cols();
         this -> rows = M.Rows();
-        this -> m = new T*[rows];
+        this -> m = new int*[rows];
         for (int i = 0; i < rows; i++){
-            m[i] = new T[columns];
+            m[i] = new int[columns];
             for (int j=0; j < columns; j++){
                 m[i][j] = M.m[i][j];
             }
