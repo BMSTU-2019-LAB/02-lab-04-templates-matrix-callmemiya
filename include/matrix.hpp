@@ -141,12 +141,10 @@ public:
            return true;
        }
     ~Matrix(){
-        if (m != nullptr){
-            for (int i = 0; i < rows; i++){
-                delete[] m[i];
-            }
-            delete[] m;
+        for (int i = 0; i < rows; i++){
+            delete[] m[i];
         }
+        delete[] m;
     }
     Matrix Inverse() const{
         if (rows != columns){
