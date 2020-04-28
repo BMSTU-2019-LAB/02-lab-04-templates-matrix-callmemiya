@@ -15,14 +15,17 @@ class Matrix{
     T** m;
 
 public:
+    Matrix() {
+      rows = 0;
+      cols = 0;
+      m = nullptr;
+    }
     Matrix(int rows, int columns){
         this->rows = rows;
         this->columns = columns;
         m = new T*[rows];
         for (int i = 0; i < rows; i++){
             m[i] = new T[columns];
-        }
-        for (int i = 0; i < rows; i++){
             for (int j = 0 ; j < columns; j++){
                 m[i][j] = 0;
             }
@@ -45,13 +48,9 @@ public:
     Matrix & operator =(const Matrix& L){
            columns = L.columns;
            rows = L.rows;
-           m = new T*[rows];
-           for (int i = 0; i < rows; i++){
-               m[i] = new T[columns];
-           }
            for (int i = 0; i < rows; i++){
                for (int j=0 ; j < columns; j++){
-                   m[i][j] = L[i][j];
+                   m[i][j] = L.m[i][j];
                }
            }
            return *this;
@@ -64,7 +63,7 @@ public:
     }
     Matrix operator+(const Matrix& H) const{
         if (columns != H.columns || rows != H.rows) {
-            Matrix<T> error(0, 0);
+            Matrix<T> error;
             return error;
         }
         Matrix<T> sum(rows, columns);
@@ -77,7 +76,7 @@ public:
     }
     Matrix operator-(const Matrix& H) const{
         if (columns != H.columns || rows != H.rows) {
-            Matrix<T> error(0, 0);
+            Matrix<T> error;
             return error;
         }
         Matrix<T> raz(rows, columns);
@@ -90,7 +89,7 @@ public:
     }
     Matrix operator*(const Matrix& F){
      if (columns != F.rows){
-      Matrix<T> error(0, 0);
+      Matrix<T> error;
       return error;
      }
      Matrix<T> proiz(rows, F.columns);
@@ -141,7 +140,7 @@ public:
     }
     Matrix Inverse() const{
         if (rows != columns){
-            Matrix<T> error(0, 0);
+            Matrix<T> error;
             return error;
         }
         Matrix<T> Turn(rows, 2*columns);
