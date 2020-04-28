@@ -40,7 +40,7 @@ public:
         }
         for (int i = 0 ; i < rows; i++){
             for (int j=0; j < columns; j++){
-                m[i][j] = M[i][j];
+                m[i][j] = M.m[i][j];
             }
         }
     }
