@@ -32,13 +32,11 @@ public:
         return m[index];
     }
     Matrix(const Matrix& M){
-        columns = M.columns;
-        rows = M.rows;
-        m = new T*[rows];
+        columns = M.Cols();
+        rows = M.Rows();
+        this -> m = new T*[rows];
         for (int i = 0; i < rows; i++){
             m[i] = new T[columns];
-        }
-        for (int i = 0 ; i < rows; i++){
             for (int j=0; j < columns; j++){
                 m[i][j] = M.m[i][j];
             }
