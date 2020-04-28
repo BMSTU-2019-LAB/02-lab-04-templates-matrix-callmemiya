@@ -1,12 +1,15 @@
-// Copyright 2018 Your Name <your_email>
+// Copyright 2020 Maria 
 
 #ifndef INCLUDE_MATRIX_HPP_
 #define INCLUDE_MATRIX_HPP_
+
 #include <type_traits>
 #include <iostream>
 #include <limits>
-using namespace std;
 #include <math.h>
+
+using namespace std;
+
 template<class T>
 class Matrix{
     static_assert(std::is_arithmetic<T>::value,"Not arithmetic type");
@@ -20,6 +23,7 @@ public:
         columns=0;
         m=nullptr;
     }
+    
     Matrix(int rows,int columns){
         this->rows=rows;
         this->columns=columns;
@@ -33,9 +37,11 @@ public:
             }
         }
     };
+    
     T* operator[](int index) const{
         return m[index];
     }
+    
     Matrix(const Matrix& M){
         columns=M.columns;
         rows=M.rows;
@@ -49,6 +55,7 @@ public:
             }
         }
     }
+    
     Matrix & operator=(const Matrix& L){
            columns=L.columns;
            rows=L.rows;
@@ -67,9 +74,11 @@ public:
     int Rows() const{
         return rows;
     }
+    
     int Cols() const{
         return columns;
     }
+    
     Matrix operator+(const Matrix& H) const{
         if (columns!=H.columns || rows!=H.rows) {
             Matrix<T> error;
@@ -97,6 +106,7 @@ public:
         }
         return raz;
     }
+    
     Matrix operator*(const Matrix& F){
         if (columns!=F.rows){
             Matrix<T> error;
@@ -117,6 +127,7 @@ public:
         }
         return proiz;
     }
+    
     bool operator!=(const Matrix& N) const{
         for (int i=0;i<rows;i++){
             for (int j=0;j<columns;j++){
@@ -126,6 +137,7 @@ public:
         }
         return true;
     }
+    
     bool operator==(const Matrix& O) const{
            for (int i=0;i<rows;i++){
                for (int j=0;j<columns;j++){
@@ -135,6 +147,7 @@ public:
            }
            return true;
        }
+    
     ~Matrix(){
         if (m!=nullptr){
             for (int i=0;i<rows;i++){
@@ -143,6 +156,7 @@ public:
             delete[] m;
         }
     }
+    
     Matrix Inverse() const{
         if (rows!=columns){
             Matrix<T> error;
@@ -207,8 +221,10 @@ public:
         }
     return F;
     }
+    
     template<class R>
     friend bool operator==(const Matrix<R>& P,const Matrix<R>& Q);
+    
 };
 
 template<class T>
