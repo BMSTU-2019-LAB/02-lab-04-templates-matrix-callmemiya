@@ -7,7 +7,7 @@
 #include <iostream>
 #include <limits>
 #include <math.h>
-
+#include <algorithm>
 
 template<class T>
 class Matrix{
@@ -15,7 +15,6 @@ class Matrix{
     int rows;
     int columns;
     T** m;
-    
 public:
     Matrix(){
         rows = 0;
@@ -98,26 +97,26 @@ public:
         return raz;
     }
     Matrix operator*(const Matrix& F){
-        if (columns != F.rows){
-            Matrix<T> error;
-            return error;
-        }
-        Matrix<T> proiz(rows, F.columns);
-        for (int i = 0; i < rows; i++){
-            for (int j = 0; j < F.columns; j++){
-                for (int k = 0; k < columns; k++)
-                    proiz[i][j] += m[i][k] * F.m[k][j];
-                }
-            }
-         for (int i = 0; i < rows; i++){
-          for (int j = 0; j < F.columns; j++){
-           if (abs(proiz[i][j])<10*std::numeric_limits<double>::epsilon())
-            proiz[i][j] = 0;
-           if (abs(abs(proiz[i][j])-round(proiz[i][j]))<10*std::numeric_limits<double>::epsilon())
-            proiz[i][j] = round(proiz[i][j]);
-          }
-         }
-        return proiz;
+     if (columns != F.rows){
+      Matrix<T> error;
+      return error;
+     }
+     Matrix<T> proiz(rows, F.columns);
+      for (int i = 0; i < rows; i++){
+       for (int j = 0; j < F.columns; j++){
+        for (int k = 0; k < columns; k++)
+         proiz[i][j] += m[i][k] * F.m[k][j];
+       }
+      }
+      for (int i = 0; i < rows; i++){
+       for (int j = 0; j < F.columns; j++){
+        if (abs(proiz[i][j])<10*std::numeric_limits<double>::epsilon())
+         proiz[i][j] = 0;
+        if (abs(abs(proiz[i][j])-round(proiz[i][j]))<10*std::numeric_limits<double>::epsilon())
+         proiz[i][j] = round(proiz[i][j]);
+       }
+      }
+     return proiz;
     }
     bool operator != (const Matrix& N) const{
         for (int i = 0; i < rows; i++){
@@ -133,9 +132,8 @@ public:
            for (int i = 0; i < rows; i++){
                for (int j = 0; j < columns; j++){
                    if (m[i][j] == O[i][j]) {}
-                   else {
+                   else
                        return false;
-                   }
                }
            }
            return true;
