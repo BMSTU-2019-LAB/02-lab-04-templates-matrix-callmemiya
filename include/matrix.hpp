@@ -222,4 +222,5 @@ bool operator==(const Matrix<double> &P, const Matrix<double> &Q){
         return true;
     }
 }
+
 #endif // INCLUDE_MATRIX_HPP_
