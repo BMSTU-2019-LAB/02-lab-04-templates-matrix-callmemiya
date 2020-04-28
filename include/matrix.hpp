@@ -34,6 +34,18 @@ public:
     T* operator[](int index) const{
         return m[index];
     }
+    Matrix(const Matrix& M){
+        columns = M.Cols();
+        rows = M.Rows();
+        m = new T*[rows];
+        for (int i = 0; i < rows; i++){
+            m[i] = new T[columns];
+            for (int j=0; j < columns; j++){
+                m[i][j] = M.m[i][j];
+            }
+        }
+        return *this;
+    }
     Matrix & operator =(const Matrix& L){
            columns = L.columns;
            rows = L.rows;
