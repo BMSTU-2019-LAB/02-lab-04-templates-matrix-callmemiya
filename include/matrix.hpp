@@ -8,7 +8,6 @@
 #include <limits>
 #include <math.h>
 
-using namespace std;
 
 template<class T>
 class Matrix{
@@ -34,12 +33,10 @@ public:
                 m[i][j] = 0;
             }
         }
-    };
-    
+    }
     T* operator[](int index) const{
         return m[index];
     }
-    
     Matrix(const Matrix& M){
         columns = M.columns;
         rows = M.rows;
@@ -47,13 +44,12 @@ public:
         for (int i = 0; i < rows; i++){
             m[i] = new T[columns];
         }
-        for (int i = 0 ;i < rows; i++){
+        for (int i = 0 ; i < rows; i++){
             for (int j=0; j < columns; j++){
                 m[i][j] = M[i][j];
             }
         }
     }
-    
     Matrix & operator =(const Matrix& L){
            columns = L.columns;
            rows = L.rows;
@@ -71,11 +67,9 @@ public:
     int Rows() const{
         return rows;
     }
-    
     int Cols() const{
         return columns;
     }
-    
     Matrix operator+(const Matrix& H) const{
         if (columns != H.columns || rows != H.rows) {
             Matrix<T> error;
@@ -83,13 +77,12 @@ public:
         }
         Matrix<T> sum(rows, columns);
         for (int i = 0; i < rows; i++){
-            for (int j = 0; j<columns; j++){
+            for (int j = 0; j < columns; j++){
                 sum.m[i][j] = m[i][j]+H.m[i][j];
             }
         }
         return sum;
     }
-    
     Matrix operator-(const Matrix& H) const{
         if (columns != H.columns || rows != H.rows) {
             Matrix<T> error;
@@ -103,7 +96,6 @@ public:
         }
         return raz;
     }
-    
     Matrix operator*(const Matrix& F){
         if (columns != F.rows){
             Matrix<T> error;
@@ -118,17 +110,18 @@ public:
             }
          for (int i = 0; i < rows; i++){
             for (int j = 0; j < F.columns; j++){
-                if (abs(proiz[i][j])<10*std::numeric_limits<double>::epsilon()) proiz[i][j] = 0;
-                if (abs(abs(proiz[i][j])-round(proiz[i][j]))<10*std::numeric_limits<double>::epsilon()) proiz[i][j] = round(proiz[i][j]);
+                if (abs(proiz[i][j])<10*std::numeric_limits<double>::epsilon())
+                    proiz[i][j] = 0;
+                if (abs(abs(proiz[i][j])-round(proiz[i][j]))<10*std::numeric_limits<double>::epsilon())
+                    proiz[i][j] = round(proiz[i][j]);
             }
         }
         return proiz;
     }
-    
     bool operator != (const Matrix& N) const{
         for (int i = 0; i < rows; i++){
             for (int j = 0; j < columns; j++){
-                if (m[i][j] != N[i][j]) {};
+                if (m[i][j] != N[i][j]) {}
                 else
                     return false;
             }
@@ -139,14 +132,13 @@ public:
     bool operator == (const Matrix& O) const{
            for (int i = 0; i < rows; i++){
                for (int j = 0; j < columns; j++){
-                   if (m[i][j] == O[i][j]);
+                   if (m[i][j] == O[i][j]) {};
                    else
                        return false;
                }
            }
            return true;
        }
-    
     ~Matrix(){
         if (m != nullptr){
             for (int i = 0; i < rows; i++){
@@ -161,7 +153,7 @@ public:
             Matrix<T> error;
             return error;
         }
-        Matrix<T> Turn(rows,2*columns);
+        Matrix<T> Turn(rows, 2*columns);
         for (int i = 0; i < rows; i++){
             for (int j = 0; j < columns; j++){
                 Turn[i][j] = m[i][j];
@@ -183,7 +175,7 @@ public:
                             r++;
                         }
                         for (int q = 0; q < 2*columns; q++){
-                            std::swap(Turn[i][q],Turn[r][q]);
+                            std::swap(Turn[i][q], Turn[r][q]);
                         }
                     }
                         l = Turn[i][j];
@@ -196,7 +188,7 @@ public:
                 if (i > j){
                     n = Turn[i][j]/Turn[j][j];
                     for (int k = 0; k < 2*columns; k++){
-                        Turn[i][k]-=Turn[j][k]*n;
+                        Turn[i][k] -= Turn[j][k]*n;
                     }
                 }
             }
@@ -205,15 +197,15 @@ public:
             for (int i = rows-1; i >= 0; i--){
                 if (i < j){
                     if (Turn[j][j] != 0){n = Turn[i][j]/Turn[j][j];
-                        for (int k = 0;k < 2*columns; k++){
-                            Turn[i][k]-=Turn[j][k]*n;
+                        for (int k = 0; k < 2*columns; k++){
+                            Turn[i][k] -= Turn[j][k]*n;
                         }
                     }
                 }
             }
         }
-        Matrix<T> F(rows,columns);
-        for (int i = 0;i < rows; i++){
+        Matrix<T> F(rows, columns);
+        for (int i = 0; i < rows; i++){
             for (int j = 0; j < columns; j++){
                 F[i][j] = Turn[i][j+columns];
             }
@@ -223,7 +215,6 @@ public:
     
     template<class R>
     friend bool operator==(const Matrix<R>& P,const Matrix<R>& Q);
-    
 };
 
 template<class T>
