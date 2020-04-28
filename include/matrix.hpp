@@ -1,5 +1,4 @@
-// Copyright 2020 Maria 
-
+// Copyright 2020 Maria
 #ifndef INCLUDE_MATRIX_HPP_
 #define INCLUDE_MATRIX_HPP_
 
@@ -15,6 +14,7 @@ class Matrix{
     int rows;
     int columns;
     T** m;
+
 public:
     Matrix(){
         rows = 0;
@@ -112,7 +112,8 @@ public:
        for (int j = 0; j < F.columns; j++){
         if (abs(proiz[i][j])<10*std::numeric_limits<double>::epsilon())
          proiz[i][j] = 0;
-        if (abs(abs(proiz[i][j])-round(proiz[i][j]))<10*std::numeric_limits<double>::epsilon())
+           int w=round(proiz[i][j]);
+        if (abs(abs(proiz[i][j])-w)<10*std::numeric_limits<double>::epsilon())
          proiz[i][j] = round(proiz[i][j]);
        }
       }
