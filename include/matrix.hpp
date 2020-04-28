@@ -44,10 +44,15 @@ public:
                 m[i][j] = M.m[i][j];
             }
         }
+        return *this;
     }
     Matrix & operator =(const Matrix& L){
            columns = L.columns;
            rows = L.rows;
+           m = new T*[rows];
+           for (int i = 0; i < rows; i++){
+               m[i] = new T[columns];
+           }
            for (int i = 0; i < rows; i++){
                for (int j=0 ; j < columns; j++){
                    m[i][j] = L.m[i][j];
