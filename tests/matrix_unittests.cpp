@@ -18,7 +18,7 @@ TEST(Matrix, Init) {
 
 TEST(Matrix, CopyAssign) {
     Matrix<int> m(2, 2);
-    Matrix<int> copy(2, 2);
+    Matrix<int> copy(m);
     EXPECT_EQ(m, copy);
 
     m[0][0] = 1;

@@ -35,11 +35,11 @@ public:
         return m[index];
     }
     Matrix(const Matrix& M){
-        this -> columns = M.Cols();
-        this -> rows = M.Rows();
-        this -> m = new int*[rows];
+        columns = M.Cols();
+        rows = M.Rows();
+        m = new T*[rows];
         for (int i = 0; i < rows; i++){
-            m[i] = new int[columns];
+            m[i] = new T[columns];
             for (int j=0; j < columns; j++){
                 m[i][j] = M.m[i][j];
             }
