@@ -35,8 +35,8 @@ public:
         return m[index];
     }
     Matrix(const Matrix& M){
-        columns = M.Cols();
-        rows = M.Rows();
+        this -> columns = M.Cols();
+        this -> rows = M.Rows();
         this -> m = new T*[rows];
         for (int i = 0; i < rows; i++){
             m[i] = new T[columns];
