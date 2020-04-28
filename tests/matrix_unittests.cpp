@@ -41,7 +41,7 @@ TEST(Matrix, Add) {
 
     Matrix<int> c = m;
 
-    Matrix<int> s = m + c;
+    Matrix<int> s = m + c
     Matrix<int> s2 = c + c;
     EXPECT_EQ(s2, s);
 
@@ -115,7 +115,8 @@ TEST(Matrix, Mult) {
     Matrix<char> c(2, 2);
     /*
     1 0
-    1 1*/
+    1 1
+    */
     c[0][0] = 1;
     c[0][1] = 0;
     c[1][0] = 1;
@@ -144,14 +145,14 @@ TEST(Matrix, Mult) {
 TEST(Matrix, Inverse) {
     Matrix<double> m(5, 5);
 
-    for (int i = 0; i < m.Rows(); ++i) {
-        for (int j = 0; j < m.Rows(); ++j) {
+    for (size_t i = 0; i < m.Rows(); ++i) {
+        for (size_t j = 0; j < m.Rows(); ++j) {
             m[i][j] = 1 + (i * j) % 7;
         }
     }
 
     Matrix<double> I(5, 5);
-    for (int i = 0; i < m.Rows(); ++i) {
+    for (size_t i = 0; i < m.Rows(); ++i) {
         I[i][i] = 1.;
     }
 
