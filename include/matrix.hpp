@@ -15,11 +15,6 @@ class Matrix{
     T** m;
 
 public:
-    Matrix(){
-        rows = 0;
-        columns = 0;
-        m = nullptr;
-    }
     Matrix(int rows, int columns){
         this->rows = rows;
         this->columns = columns;
@@ -71,7 +66,7 @@ public:
     }
     Matrix operator+(const Matrix& H) const{
         if (columns != H.columns || rows != H.rows) {
-            Matrix<T> error;
+            Matrix<T> error(0, 0);
             return error;
         }
         Matrix<T> sum(rows, columns);
@@ -84,7 +79,7 @@ public:
     }
     Matrix operator-(const Matrix& H) const{
         if (columns != H.columns || rows != H.rows) {
-            Matrix<T> error;
+            Matrix<T> error(0, 0);
             return error;
         }
         Matrix<T> raz(rows, columns);
@@ -97,7 +92,7 @@ public:
     }
     Matrix operator*(const Matrix& F){
      if (columns != F.rows){
-      Matrix<T> error;
+      Matrix<T> error(0, 0);
       return error;
      }
      Matrix<T> proiz(rows, F.columns);
@@ -148,7 +143,7 @@ public:
     }
     Matrix Inverse() const{
         if (rows != columns){
-            Matrix<T> error;
+            Matrix<T> error(0, 0);
             return error;
         }
         Matrix<T> Turn(rows, 2*columns);
