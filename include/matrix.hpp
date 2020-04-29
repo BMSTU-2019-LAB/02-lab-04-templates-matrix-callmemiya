@@ -203,16 +203,16 @@ public:
 };
 
 template<class T>
-Matrix<T>::Matrix(const Matrix& G)
-{
- rows = G.rows;
- columns = G.columns;
- m = new T*[G.rows];
- for (int i = 0; i < G.rows; i++)
-  m[i] = new T[G.columns];
- for (int i = 0; i < G.rows; i++)
-  for (int j = 0; j < G.columns; j++)
-   m[i][j] = G.m[i][j];
+Matrix<T>::Matrix(const Matrix& G){
+    rows = G.rows;
+    columns = G.columns;
+    m = new T*[G.rows];
+    for (int i = 0; i < G.rows; i++){
+        m[i] = new T[G.columns];
+        for (int j = 0; j < G.columns; j++){
+            m[i][j] = G.m[i][j];
+        }
+    }
 }
 
 template<class T>
