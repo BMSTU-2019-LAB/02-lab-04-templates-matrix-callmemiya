@@ -44,7 +44,6 @@ public:
                 m[i][j] = M.m[i][j];
             }
         }
-        return *this;
     }
     Matrix & operator =(const Matrix& L){
            columns = L.columns;
