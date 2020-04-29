@@ -31,19 +31,7 @@ public:
             }
         }
     }
-    Matrix(const Matrix& G){
-           columns = G.columns;
-           rows = G.rows;
-           m = new T*[rows];
-           for (int i = 0; i < rows; i++){
-               m[i] = new T[columns];
-           }
-           for (int i = 0; i < rows; i++){
-               for (int j=0 ; j < columns; j++){
-                   m[i][j] = G.m[i][j];
-               }
-           }
-    }
+    Matrix(const Matrix& G);
     T* operator[](int index) const{
         return m[index];
     }
@@ -213,6 +201,19 @@ public:
     template<class R>
     friend bool operator==(const Matrix<R>& P, const Matrix<R>& Q);
 };
+
+template<class T>
+Matrix<T>::Matrix(const Matrix& G)
+{
+ rows = G.rows;
+ cols = G.cols;
+ m = new T*[rows];
+ for (int i = 0; i < rows; i++)
+  m[i] = new T[cols];
+ for (int i = 0; i < rows; i++)
+  for (int j = 0; j < cols; j++)
+   m[i][j] = G.m[i][j];
+}
 
 template<class T>
 bool operator==(const Matrix<double> &P, const Matrix<double> &Q){
