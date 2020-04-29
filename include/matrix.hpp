@@ -33,7 +33,7 @@ public:
         for (int i = 0; i < rows; i++){
             m[i] = new T[columns];
             for (int j = 0; j < columns; j++){
-                m[i][j] = G.m[i][j];
+                m[i][j] = G[i][j];
             }
         }
     }
