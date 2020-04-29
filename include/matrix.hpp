@@ -36,6 +36,17 @@ public:
     T* operator[](int index) const{
         return m[index];
     }
+    Matrix(const Matrix& L){
+        this->rows = L.rows;
+        this->columns = L.columns;
+        m = new T*[rows];
+        for (int i = 0; i < rows; i++){
+            m[i] = new T[columns];
+            for (int j = 0 ; j < columns; j++){
+                m[i][j] = L.m[i][j];
+            }
+        }
+    }
     Matrix & operator =(const Matrix& L){
            columns = L.columns;
            rows = L.rows;
@@ -202,19 +213,6 @@ public:
     template<class R>
     friend bool operator==(const Matrix<R>& P, const Matrix<R>& Q);
 };
-
-template<class T>
-Matrix<T>::Matrix(const Matrix& rhs)
-{
- rows = rhs.rows;
- columns = rhs.columns;
- m = new T*[rows];
- for (int i = 0; i < rows; i++)
-  m[i] = new T[columns];
- for (int i = 0; i < rows; i++)
-  for (int j = 0; j < columns; j++)
-   m[i][j] = rhs.m[i][j];
-}
 
 template<class T>
 bool operator==(const Matrix<double> &P, const Matrix<double> &Q){
