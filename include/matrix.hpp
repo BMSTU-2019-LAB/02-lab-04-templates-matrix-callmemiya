@@ -31,7 +31,7 @@ public:
             }
         }
     }
-    Matrix (const Matrix& G){
+    Matrix(const Matrix& G){
            columns = G.columns;
            rows = G.rows;
            m = new T*[rows];
