@@ -6,7 +6,6 @@
 #include <iostream>
 #include <limits>
 #include <math.h>
-#include <stdlib.h>
 
 template<class T>
 class Matrix{
@@ -36,14 +35,14 @@ public:
     T* operator[](int index) const{
         return m[index];
     }
-    Matrix(const Matrix& L){
-        this->rows = L.rows;
-        this->columns = L.columns;
+    Matrix(const Matrix& G){
+        rows = G.rows;
+        columns = G.columns;
         m = new T*[rows];
         for (int i = 0; i < rows; i++){
             m[i] = new T[columns];
-            for (int j = 0 ; j < columns; j++){
-                m[i][j] = L.m[i][j];
+            for (int j = 0; j < columns; j++){
+                m[i][j] = G.m[i][j];
             }
         }
     }
