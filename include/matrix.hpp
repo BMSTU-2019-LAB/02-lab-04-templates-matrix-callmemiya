@@ -206,12 +206,12 @@ template<class T>
 Matrix<T>::Matrix(const Matrix& G)
 {
  rows = G.rows;
- cols = G.cols;
+ columns = G.columns;
  m = new T*[rows];
  for (int i = 0; i < rows; i++)
   m[i] = new T[cols];
  for (int i = 0; i < rows; i++)
-  for (int j = 0; j < cols; j++)
+  for (int j = 0; j < columns; j++)
    m[i][j] = G.m[i][j];
 }
 
