@@ -31,19 +31,21 @@ public:
             }
         }
     }
+    Matrix (const Matrix& G){
+           columns = G.columns;
+           rows = G.rows;
+           m = new T*[rows];
+           for (int i = 0; i < rows; i++){
+               m[i] = new T[columns];
+           }
+           for (int i = 0; i < rows; i++){
+               for (int j=0 ; j < columns; j++){
+                   m[i][j] = G.m[i][j];
+               }
+           }
+    }
     T* operator[](int index) const{
         return m[index];
-    }
-    Matrix(const Matrix& M){
-        columns = M.Cols();
-        rows = M.Rows();
-        m = new T*[rows];
-        for (int i = 0; i < rows; i++){
-            m[i] = new T[columns];
-            for (int j=0; j < columns; j++){
-                m[i][j] = M.m[i][j];
-            }
-        }
     }
     Matrix & operator =(const Matrix& L){
            columns = L.columns;
