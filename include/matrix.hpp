@@ -207,11 +207,11 @@ Matrix<T>::Matrix(const Matrix& G)
 {
  rows = G.rows;
  columns = G.columns;
- m = new T*[rows];
+ m = new T*[G.rows];
  for (int i = 0; i < rows; i++)
-  m[i] = new T[columns];
- for (int i = 0; i < rows; i++)
-  for (int j = 0; j < columns; j++)
+  m[i] = new T[G.columns];
+ for (int i = 0; i < G.rows; i++)
+  for (int j = 0; j < G.columns; j++)
    m[i][j] = G.m[i][j];
 }
 
