@@ -204,16 +204,16 @@ public:
 };
 
 template<class T>
-Matrix<T>::Matrix(const Matrix& G){
-    rows = G.Rows();
-    columns = G.Cols();
-    m = (T**)malloc(G.Rows()*sizeof(T*));
-    for (int i = 0; i < G.Rows(); i++){
-        m[i] = (T*)malloc(G.Cols()*sizeof(T));
-        for (int j = 0; j < G.Cols(); j++){
-            m[i][j] = G.m[i][j];
-        }
-    }
+Matrix<T>::Matrix(const Matrix& rhs)
+{
+ rows = rhs.rows;
+ columns = rhs.columns;
+ m = new T*[rows];
+ for (int i = 0; i < rows; i++)
+  m[i] = new T[columns];
+ for (int i = 0; i < rows; i++)
+  for (int j = 0; j < columns; j++)
+   m[i][j] = rhs.m[i][j];
 }
 
 template<class T>
