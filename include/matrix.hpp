@@ -206,9 +206,9 @@ template<class T>
 Matrix<T>::Matrix(const Matrix& G){
     rows = G.Rows();
     columns = G.Cols();
-    m = new T*[G.Rows()];
+    m = (T**)malloc(G.Rows()*sizeof(T*));
     for (int i = 0; i < G.Rows(); i++){
-        m[i] = new T[G.Cols()];
+        m[i] = (T*)malloc(G.Cols()*sizeof(T));
         for (int j = 0; j < G.Cols(); j++){
             m[i][j] = G.m[i][j];
         }
