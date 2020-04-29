@@ -6,6 +6,7 @@
 #include <iostream>
 #include <limits>
 #include <math.h>
+#include <stdlib.h>
 
 template<class T>
 class Matrix{
