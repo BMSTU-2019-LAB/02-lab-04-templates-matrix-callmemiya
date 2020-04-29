@@ -29,7 +29,7 @@ public:
     Matrix(const Matrix& G){
         rows = G.rows;
         columns = G.columns;
-        m = new T*[rows];
+        this->m = new T*[rows];
         for (int i = 0; i < rows; i++){
             m[i] = new T[columns];
             for (int j = 0; j < columns; j++){
