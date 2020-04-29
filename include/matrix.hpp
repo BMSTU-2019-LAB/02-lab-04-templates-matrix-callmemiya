@@ -18,7 +18,6 @@ public:
     Matrix() {
       rows = 0;
       columns = 0;
-      m = nullptr;
     }
     Matrix(int rows, int columns){
         this->rows = rows;
