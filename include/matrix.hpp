@@ -31,10 +31,6 @@ public:
             }
         }
     }
-    Matrix(const Matrix& G);
-    T* operator[](int index) const{
-        return m[index];
-    }
     Matrix(const Matrix& G){
         rows = G.rows;
         columns = G.columns;
@@ -45,6 +41,9 @@ public:
                 m[i][j] = G.m[i][j];
             }
         }
+    }
+    T* operator[](int index) const{
+        return m[index];
     }
     Matrix & operator =(const Matrix& L){
            columns = L.columns;
