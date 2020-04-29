@@ -88,7 +88,7 @@ public:
     }
     Matrix operator*(const Matrix& F){
      if (columns != F.rows){
-      Matrix<T> error(0,0);
+      Matrix<T> error(0, 0);
       return error;
      }
      Matrix<T> proiz(rows, F.columns);
