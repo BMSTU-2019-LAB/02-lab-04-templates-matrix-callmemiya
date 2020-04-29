@@ -204,12 +204,12 @@ public:
 
 template<class T>
 Matrix<T>::Matrix(const Matrix& G){
-    rows = G.rows;
-    columns = G.columns;
-    m = new T*[G.rows];
-    for (int i = 0; i < G.rows; i++){
-        m[i] = new T[G.columns];
-        for (int j = 0; j < G.columns; j++){
+    rows = G.Rows();
+    columns = G.Cols();
+    m = new T*[G.Rows()];
+    for (int i = 0; i < G.Rows(); i++){
+        m[i] = new T[G.Cols()];
+        for (int j = 0; j < G.Cols(); j++){
             m[i][j] = G.m[i][j];
         }
     }
