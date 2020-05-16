@@ -20,14 +20,11 @@ TEST(Matrix, CopyAssign) {
     Matrix<int> m(2, 2);
     Matrix<int> copy(m);
     EXPECT_EQ(m, copy);
-
     m[0][0] = 1;
     m[0][1] = 2;
     m[1][0] = 3;
     m[1][1] = 4;
-
     EXPECT_NE(m, copy);
-
     copy = m;
     EXPECT_EQ(m, copy);
 }
@@ -41,7 +38,7 @@ TEST(Matrix, Add) {
 
     Matrix<int> c = m;
 
-    Matrix<int> s = m + c
+    Matrix<int> s = m + c;
     Matrix<int> s2 = c + c;
     EXPECT_EQ(s2, s);
 
@@ -143,21 +140,21 @@ TEST(Matrix, Mult) {
 }
 
 TEST(Matrix, Inverse) {
-    Matrix<double> m(5, 5);
+  Matrix<double> m(5, 5);
 
-    for (size_t i = 0; i < m.Rows(); ++i) {
-        for (size_t j = 0; j < m.Rows(); ++j) {
-            m[i][j] = 1 + (i * j) % 7;
-        }
+  for (int i = 0; i < m.Rows(); ++i) {
+    for (int j = 0; j < m.Rows(); ++j) {
+      m[i][j] = 1 + (i*j)%7;
     }
+  }
 
-    Matrix<double> I(5, 5);
-    for (size_t i = 0; i < m.Rows(); ++i) {
-        I[i][i] = 1.;
-    }
+  Matrix<double> I(5, 5);
+  for (int i = 0; i < m.Rows(); ++i) {
+    I[i][i] = 1.;
+  }
 
-    auto i = m.Inverse();
-    EXPECT_EQ(I, i * m);
-    EXPECT_EQ(I, m * i);
-    EXPECT_EQ(m * i, i * m);
+  auto i = m.Inverse();
+  EXPECT_EQ(I, i*m);
+  EXPECT_EQ(I, m*i);
+  EXPECT_EQ(m*i, i*m);
 }
